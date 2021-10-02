@@ -1,20 +1,22 @@
 import React from 'react';
-import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
 import Header from './Header/Header';
+import BurgerBuilder from './BurgerBuilder/BurgerBuilder';
 import Orders from './Orders/Orders';
 import CheckOut from './Orders/CheckOut/CheckOut';
 import Auth from './Auth/Auth';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
+
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         token: state.token,
     }
 }
 
-const Main = (props) => {
+const Main = props => {
+
     let routes = null;
     if (props.token === null) {
         routes = (
@@ -40,7 +42,8 @@ const Main = (props) => {
                 {routes}
             </div>
         </div>
-    );
-};
+    )
+}
+
 
 export default connect(mapStateToProps)(Main);
