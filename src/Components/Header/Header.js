@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
 import {
@@ -6,6 +6,8 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
+    NavbarToggler,
+    Collapse,
 } from 'reactstrap';
 import Logo from '../../assets/logo.png';
 import { connect } from 'react-redux';
@@ -16,44 +18,62 @@ const mapStateToProps = state => {
     }
 }
 
-const Header = props => {
+const Header = (props) => {
     let links = null;
+
+    const [collapsed, setCollapsed] = useState(true);
+    const toggleNavbar = () => setCollapsed(!collapsed);
+
     if (props.token === null) {
         links = (
-            <Nav className="mr-md-5">
+            <Nav className='ms-auto mr-md-5' navbar>
                 <NavItem>
-                    <NavLink exact to="/login" className="NavLink">Login</NavLink>
+                    <NavLink exact to='/login' className='NavLink'>
+                        Login
+                    </NavLink>
                 </NavItem>
             </Nav>
-        )
+        );
     } else {
         links = (
-            <Nav className="mr-md-5">
+            <Nav className='ms-auto mr-md-5' navbar>
                 <NavItem>
-                    <NavLink exact to="/" className="NavLink">Burger Builder</NavLink>
+                    <NavLink exact to='/' className='NavLink'>
+                        Burger Builder
+                    </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink exact to="/orders" className="NavLink">Orders</NavLink>
+                    <NavLink exact to='/orders' className='NavLink'>
+                        Orders
+                    </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink exact to="/logout" className="NavLink">Logout</NavLink>
+                    <NavLink exact to='/logout' className='NavLink'>
+                        Logout
+                    </NavLink>
                 </NavItem>
             </Nav>
-        )
+        );
     }
     return (
-        <div className="Navigation">
-            <Navbar style={{
-                backgroundColor: "#D70F64",
-                height: "70px",
-            }}>
-                <NavbarBrand href="/" className="mr-auto ml-md-5 Brand">
-                    <img src={Logo} alt="Logo" width="80px" />
+        <div className='Navigation'>
+            <Navbar
+                dark
+                expand='sm'
+                style={{
+                    backgroundColor: '#D70F64',
+                    height: '70px'
+                }}
+            >
+                <NavbarBrand href='/' className='mr-auto ml-md-5 Brand'>
+                    <img src={Logo} alt='Logo' width='80px' />
                 </NavbarBrand>
-                {links}
+                <NavbarToggler onClick={toggleNavbar} className='mr-2' />
+                <Collapse isOpen={!collapsed} navbar>
+                    {links}
+                </Collapse>
             </Navbar>
         </div>
-    )
-}
-
+    );
+};
 export default connect(mapStateToProps)(Header);
