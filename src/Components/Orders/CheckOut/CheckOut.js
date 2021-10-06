@@ -6,6 +6,7 @@ import Spinner from '../../Spinner/Spinner';
 import { resetIngredients } from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => {
+    console.log(state.userId)
     return {
         ingredients: state.ingredients,
         totalPrice: state.totalPrice,
@@ -51,8 +52,8 @@ class CheckOut extends Component {
         this.setState({ isLoading: true });
         const order = {
             ingredients: this.props.ingredients,
-            customers: this.state.values,
-            totalPrice: this.props.totalPrice,
+            customer: this.state.values,
+            price: this.props.totalPrice,
             orderTime: new Date(),
             userId: this.props.userId,
         }

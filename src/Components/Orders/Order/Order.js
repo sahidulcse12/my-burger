@@ -21,12 +21,12 @@ const Order = (props) => {
             marginBottom: '10px'
         }}>
             <p>Order Number : {props.order.id}</p>
-            <p>Delivery Address : {props.order.customers.deliveryAddress}</p>
+            <p>Delivery Address : {props.order.customer.deliveryAddress}</p>
             <hr />
             <p>Ingredients : </p>
             {ingredientSummary}
             <hr />
-            <p>Price : {props.order.totalPrice}</p>
+            <p>Price : {props.order.price}</p>
         </div>
     );
 };
