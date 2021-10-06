@@ -10,18 +10,19 @@ const mapStateToProps = state => {
         orderLoading: state.orderLoading,
         orderErr: state.orderErr,
         token: state.token,
+        userId: state.userId,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchOrders: (token) => dispatch(fetchOrders(token))
+        fetchOrders: (token, userId) => dispatch(fetchOrders(token, userId))
     }
 }
 
 class Orders extends Component {
     componentDidMount() {
-        this.props.fetchOrders(this.props.token)
+        this.props.fetchOrders(this.props.token, this.props.userId)
     }
 
     componentDidUpdate() {

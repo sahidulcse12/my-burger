@@ -40,11 +40,12 @@ export const orderLoadFailed = () => {
     }
 }
 
-export const fetchOrders = (token) => dispatch => {
+export const fetchOrders = (token, userId) => dispatch => {
+    const queryParams = '&orderBy="userId"&equalTo="' + userId + '"';
     axios
-        .get("https://burger-builder-b20db-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth=" + token)
+        .get("https://burger-builder-b20db-default-rtdb.asia-southeast1.firebasedatabase.app/orders.json?auth=" + token + queryParams)
         .then(response => {
-            console.log(response.data)
+            //console.log(response.data)
             dispatch(loadOrders(response.data));
         })
         .catch(error => {

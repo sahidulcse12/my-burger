@@ -6,7 +6,7 @@ import Spinner from '../../Spinner/Spinner';
 import { resetIngredients } from '../../../redux/actionCreators';
 
 const mapStateToProps = (state) => {
-    console.log(state.userId)
+    //console.log(state.token)
     return {
         ingredients: state.ingredients,
         totalPrice: state.totalPrice,

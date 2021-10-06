@@ -49,7 +49,7 @@ export const auth = (email, password, mode) => dispatch => {
             localStorage.setItem('userId', response.data.localId);
             const expirationTime = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             localStorage.setItem('expirationTime', expirationTime);
-            dispatch(authSuccess(response.data.idToken, response.data.userId))
+            dispatch(authSuccess(response.data.idToken, response.data.localId))
         })
         .catch(err => {
             dispatch(authLoading(false));
